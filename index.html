@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#0b100d">
+  <meta name="description" content="Музыкальный дашборд: список дел, исполнители и справка об артистах.">
+  <title>Музыкальный дашборд</title>
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Ccircle cx='16' cy='16' r='16' fill='%231ed760'/%3E%3C/svg%3E">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="layout">
+
+    <aside class="sidebar">
+      <div class="brand">
+        <svg class="brand__mark" viewBox="0 0 32 32" aria-hidden="true">
+          <rect x="3" y="14" width="6" height="14" rx="3"/>
+          <rect x="13" y="4" width="6" height="24" rx="3"/>
+          <rect x="23" y="10" width="6" height="18" rx="3"/>
+        </svg>
+        <h1 class="brand__title">Музыкальный дашборд</h1>
+      </div>
+
+      <p class="sidebar__text">Соберите свою панель. Каждый тип виджета можно добавить один раз.</p>
+
+      <nav class="toolbar" aria-label="Добавить виджет">
+        <button type="button" class="btn btn--ghost toolbar__btn" data-add="todo">
+          <span class="toolbar__icon" aria-hidden="true"></span>Список дел
+        </button>
+        <button type="button" class="btn btn--ghost toolbar__btn" data-add="artist">
+          <span class="toolbar__icon" aria-hidden="true"></span>Исполнитель
+        </button>
+        <button type="button" class="btn btn--ghost toolbar__btn" data-add="about">
+          <span class="toolbar__icon" aria-hidden="true"></span>Об артисте
+        </button>
+      </nav>
+
+      <p class="hint" id="hint" role="status" aria-live="polite"></p>
+
+      <p class="sidebar__credits">Данные: iTunes Search API и Википедия</p>
+    </aside>
+
+    <main class="main">
+      <div class="notice" id="file-warning" hidden>
+        Страница открыта как файл, поэтому браузер блокирует ES-модули. Запустите
+        локальный сервер (<code>python -m http.server 8000</code>) и откройте
+        <code>http://localhost:8000</code>.
+      </div>
+
+      <noscript><div class="notice">Для работы дашборда нужен включённый JavaScript.</div></noscript>
+
+      <div class="board" id="board"></div>
+
+      <div class="empty" id="empty" hidden>
+        <p class="empty__title">Панель пока пуста</p>
+        <p>Нажмите на кнопку с названием виджета, чтобы добавить его.</p>
+      </div>
+    </main>
+
+  </div>
+
+  <script>
+    if (location.protocol === 'file:') {
+      document.getElementById('file-warning').hidden = false;
+    }
+  </script>
+  <script type="module" src="js/main.js"></script>
+</body>
+</html>
